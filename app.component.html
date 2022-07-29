@@ -1,0 +1,117 @@
+
+<h1 routerLink="/">Routing</h1>
+
+<div align="center">
+  <button class="btn-success" routerLink="/">Home</button>
+  <Button class="btn-light" routerLink="/about" >About-Us</Button>
+  <Button class="btn-light" routerLink="/department">Departments</Button>
+  <Button class="btn-light" routerLink="/students" >Students</Button>
+  <Button class="btn-light" routerLink="/contact" >Contact-Us</Button>
+  <button class="btn-danger" routerLink="">Buy</button>
+
+
+</div>
+<router-outlet></router-outlet>
+
+<div>
+  <ul>
+<!--    <li *ngFor="let stud of allStudents">{{stud.id}} {{stud.name}}</li>-->
+
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">SURNAME</th>
+        <th scope="col">AGE</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let stud of allStudent" >
+      <tr >
+        <td>{{stud.id}}</td>
+        <td>{{stud.name}}</td>
+        <td>{{stud.surname}}</td>
+        <td>{{stud.age}}</td>
+
+      </tr>
+
+      </ng-container>
+      </tbody>
+
+    </table>
+
+  </ul>
+</div>
+
+<form (ngSubmit)="saveStudent(form)" #form="ngForm">
+  <div class="form-group row">
+    <label for="id" class="col-sm-2 col-form-label">ID</label>
+    <div class="col-sm-10">
+      <input  type="number" class="form-control" required ngModel name="idname" #idname = "ngModel" id="id" placeholder="ID Number" [(ngModel)]="myStudent.id" >
+      <div *ngIf ="!idname.valid && idname.touched">Id Field Required</div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="name" class="col-sm-2 col-form-label">Name:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name" placeholder="Name"
+             maxlength="20"
+             required
+             ngModel name="name"
+             #name = "ngModel"
+             [(ngModel)]="myStudent.name" >
+      <div *ngIf = "name.invalid && (name.dirty || name.touched)" class="alert alert-danger">Can take only 20 characters</div>
+<!--      <div *ngIf = "name.errors?.['maxlength']"></div>-->
+      <div></div>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="surname" class="col-sm-2 col-form-label">SurName</label>
+    <div class="col-sm-10">
+      <input type="text" maxlength="40" class="form-control" id="surname" placeholder="Surname" name="surname"
+             required ngModel name="surname" #surname = "ngModel" [(ngModel)]="myStudent.surname">
+      <div *ngIf = "name.invalid && (name.dirty || name.touched)" class="alert alert-danger">Can take only 40 characters</div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="age" class="col-sm-2 col-form-label">Age</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="age" placeholder="Age"  name="age" [(ngModel)]="myStudent.age">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+
+
+
+
+
+
+<!--<table class="table">-->
+<!--  <thead class="thead-dark">-->
+<!--  <tr>-->
+<!--    <th scope="col">ID</th>-->
+<!--    <th scope="col">Name</th>-->
+<!--    <th scope="col">SurName</th>-->
+<!--    <th scope="col">Gender</th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let std of allStudent">-->
+<!--    <td>{{std.id}}</td>-->
+<!--    <td>{{std.name}}</td>-->
+<!--    <td>{{std.surname}}</td>-->
+<!--    <td>{{std.age}}</td>-->
+<!--  </tr>-->
+
+<!--  </tbody>-->
+<!--</table>-->
+
